@@ -31,6 +31,9 @@ module.exports.retrieveByCode = function retrieveByCode(code) {
 };
 
 module.exports.deleteByCode = function deleteByCode(code) {
+    // Note:
+    // If using raw sql: Can use result.rowCount to check the number of rows affected
+    // But if using function/stored procedure, result.rowCount will always return null    
     const sql = 'CALL delete_module($1)';
     return query(sql, [code])
         .then(function (result) {
@@ -41,6 +44,9 @@ module.exports.deleteByCode = function deleteByCode(code) {
 };
 
 module.exports.updateByCode = function updateByCode(code, credit) {
+    // Note:
+    // If using raw sql: Can use result.rowCount to check the number of rows affected
+    // But if using function/stored procedure, result.rowCount will always return null    
     const sql = 'CALL update_module($1, $2)';
     return query(sql, [code, credit])
         .then(function (result) {
